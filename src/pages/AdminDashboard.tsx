@@ -1,6 +1,6 @@
+import DashboardLayout from "../layouts/DashboardLayout";
 import { useEffect, useState } from "react";
 import { getAdminDashboard } from "../api/dashboardApi";
-import LogoutButton from "../components/LogoutButton";
 
 export default function AdminDashboard() {
   const [data, setData] = useState<any>(null);
@@ -9,7 +9,7 @@ export default function AdminDashboard() {
     getAdminDashboard().then(setData);
   }, []);
 
-  if (!data) return <div className="p-10">Loading...</div>;
+  if (!data) return <DashboardLayout>Loading...</DashboardLayout>;
 
   const cards = [
     { title: "Companies", value: data.totalCompanies },
@@ -20,11 +20,8 @@ export default function AdminDashboard() {
   ];
 
   return (
-    <div className="p-10">
-      <div className="flex justify-between mb-6">
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-        <LogoutButton />
-      </div>
+    <DashboardLayout>
+      <h1 className="text-2xl font-bold mb-6">Admin Dashboard</h1>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
         {cards.map((c) => (
@@ -34,6 +31,6 @@ export default function AdminDashboard() {
           </div>
         ))}
       </div>
-    </div>
+    </DashboardLayout>
   );
 }
