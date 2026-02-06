@@ -5,7 +5,7 @@ import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
 export default function ManagerDashboard() {
   const [data, setData] = useState<any>(null);
-
+const navigate = useNavigate();
   useEffect(() => {
     getManagerDashboard(1).then(setData); // projectId=1 demo
   }, []);
@@ -23,7 +23,12 @@ export default function ManagerDashboard() {
         <h1 className="text-2xl font-bold">Manager Dashboard</h1>
         <LogoutButton />
       </div>
-
+<button
+  onClick={() => navigate("/graph")}
+  className="mt-6 bg-indigo-600 text-white px-4 py-2 rounded"
+>
+  View Dependency Graph
+</button>
       <h2 className="text-lg mb-4">
         Project Progress: {data.progressPercentage}%
       </h2>

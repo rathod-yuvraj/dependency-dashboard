@@ -5,6 +5,9 @@ import ManagerDashboard from "../pages/ManagerDashboard.tsx";
 import DeveloperDashboard from "../pages/DeveloperDashboard";
 import ProtectedRoute from "./ProtectedRoute";
 
+
+import DependencyGraph from "../pages/DependencyGraph";
+
 export default function AppRoutes() {
   return (
     <BrowserRouter>
@@ -38,6 +41,15 @@ export default function AppRoutes() {
           }
         />
       </Routes>
+      <Route
+  path="/graph"
+  element={
+    <ProtectedRoute role="Manager">
+      <DependencyGraph />
+    </ProtectedRoute>
+  }
+/>
+
     </BrowserRouter>
   );
 }
