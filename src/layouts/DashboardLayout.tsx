@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import Sidebar from "../components/Sidebar";
-import LogoutButton from "../components/LogoutButton";
+import LogoutButton from "./LogoutButton";
 
 interface Props {
   children: ReactNode;
@@ -8,7 +8,7 @@ interface Props {
 
 export default function DashboardLayout({ children }: Props) {
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-screen">
       <Sidebar />
 
       <div className="flex-1 flex flex-col">

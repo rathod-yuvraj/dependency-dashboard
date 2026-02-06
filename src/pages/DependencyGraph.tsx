@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import ReactFlow, {
   Background,
   Controls,
+   MiniMap,
   Node,
   Edge,
 } from "reactflow";
 import "reactflow/dist/style.css";
 import { getProjectDependencyGraph } from "../api/dependencyApi";
-// import LogoutButton from "../components/LogoutButton";
-
+import LogoutButton from "../layouts/LogoutButton";
+import DashboardLayout from "../layouts/DashboardLayout";
 export default function DependencyGraph() {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
@@ -32,7 +33,28 @@ export default function DependencyGraph() {
         background: n.type === "Module" ? "#DBEAFE" : "#DCFCE7",
       },
     }));
-
+     const mappedNodes: Node[] = data.nodes.map((n, index) => ({
+      id: n.id,
+      data: { label: n.label },
+      position: { x: index * 150, y: index * 80 },
+      style: {
+        background:
+          n.status === "Completed"
+            ? "#22c55e"
+            : n.status === "InProgress"
+            ? "#f59e0b"
+            : "#ef4444",
+        color: "white",
+        borderRadius: 8,
+        padding: 10,
+      },
+    }));
+const mappedEdges: Edge[] = data.edges.map((e) => ({
+      id: `${e.source}-${e.target}`,
+      source: e.source,
+      target: e.target,
+      animated: true,
+    }));
     const graphEdges: Edge[] = data.edges.map((e: any, i: number) => ({
       id: `e${i}`,
       source: e.source,
@@ -55,6 +77,7 @@ export default function DependencyGraph() {
 
       <div className="flex-1">
         <ReactFlow nodes={nodes} edges={edges} fitView>
+           <MiniMap />
           <Background />
           <Controls />
         </ReactFlow>

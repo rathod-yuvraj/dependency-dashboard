@@ -6,6 +6,7 @@ export default function Sidebar() {
   const menu = {
     Admin: [
       { name: "Dashboard", path: "/admin" },
+      { name: "Dependency Graph", path: "/graph" },
     ],
     Manager: [
       { name: "Dashboard", path: "/manager" },
@@ -14,6 +15,7 @@ export default function Sidebar() {
     Developer: [
       { name: "Dashboard", path: "/developer" },
     ],
+   
   };
 
   return (
