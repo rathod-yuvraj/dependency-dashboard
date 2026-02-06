@@ -46,6 +46,7 @@ export default function DependencyGraph() {
   };
 
   return (
+    <DashboardLayout>
     <div className="h-screen flex flex-col">
       <div className="flex justify-between p-4 bg-white shadow">
         <h1 className="text-xl font-bold">Project Dependency Graph</h1>
@@ -59,5 +60,6 @@ export default function DependencyGraph() {
         </ReactFlow>
       </div>
     </div>
+    </DashboardLayout>
   );
 }

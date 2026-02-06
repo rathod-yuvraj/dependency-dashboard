@@ -18,6 +18,7 @@ const navigate = useNavigate();
   ];
 
   return (
+    <DashboardLayout>
     <div className="p-10">
       <div className="flex justify-between mb-6">
         <h1 className="text-2xl font-bold">Manager Dashboard</h1>
@@ -42,5 +43,6 @@ const navigate = useNavigate();
         <Tooltip />
       </PieChart>
     </div>
+    </DashboardLayout>
   );
 }
